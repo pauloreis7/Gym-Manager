@@ -1,18 +1,3 @@
 {
-  "instructors": [
-    {
-      "avatar_url": "http://google.com",
-      "name": "Paulo Reis",
-      "birth": "9999-01-09",
-      "gender": "M",
-      "services": "Musculação, Crossfit"
-    },
-    {
-      "avatar_url": "http://google.com",
-      "name": "Paulo Silva dos Reis",
-      "birth": "4444-04-04",
-      "gender": "F",
-      "services": "Musculação, Crossfit"
-    }
-  ]
+  "instructors": []
 }
