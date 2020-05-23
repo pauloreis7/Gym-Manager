@@ -4,9 +4,7 @@ const { age, date } = require('./utils')
 const Intl = require('intl')
 
 //show
-
 exports.show = function (req, res) {
-
     const { id } = req.params
 
     const findInstruc = data.instructors.find(function (instructor) {
@@ -55,6 +53,7 @@ exports.post = function (req, res) {
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function (err) {
         if(err) return res.send("Write file error!")
 
+
         return res.redirect(`/instructors/${id}`)
     })
 
@@ -77,4 +76,52 @@ exports.edit = function (req, res) {
     }
 
     return res.render("instructors/edit", {instructor})
+}
+
+//overwrite
+exports.put = function (req, res) {
+    const { id } = req.body
+    let index = 0
+
+    const findInstruc = data.instructors.find(function (instructor, foundIndex) {
+        if (id == instructor.id) {
+            index = foundIndex
+            return true
+        }
+
+    })
+
+    if (!findInstruc) return res.send("Instructor not found!")
+    
+    const instructor = {
+        ...findInstruc,
+        ...req.body,
+        birth: Date.parse(req.body.birth)
+    }
+
+
+    data.instructors[index] = instructor
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), function (err) {
+        if (err) return res.send("Write file error!!")
+
+        return res.redirect(`/instructors/${id}`)
+    })
+}
+
+//delete
+exports.delete = function (req, res) {
+    const { id } = req.body
+
+    const instructorFilter = data.instructors.filter(function (instructor) {
+        return instructor.id != id
+    })
+
+    data.instructors = instructorFilter
+
+    fs.writeFile('data.json', JSON.stringify(data, null, 2), function (err) {
+        if (err) return res.send("Write file error!!")
+
+        return res.redirect("/instructors")
+    })
 }

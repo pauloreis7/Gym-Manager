@@ -42,17 +42,17 @@
 
             <span> 
 
-                <input type="radio" name="gender" value="M" {% if instructor.gender =="M" %}
+                <input type="radio" name="gender" id="masc" value="M" {% if instructor.gender =="M" %}
                 checked
-                {% endif %} />Masculino 
+                {% endif %} /> <label for="masc"> Masculino </label>
 
             </span>
 
             <span> 
 
-                <input type="radio" name="gender" value="F" {% if instructor.gender == "F" %}
+                <input type="radio" name="gender" value="F" id="fem" {% if instructor.gender == "F" %}
                 checked
-                {% endif %} />Feminino 
+                {% endif %} /> <label for="fem"> Feminino </label>
 
             </span>
 
@@ -66,7 +66,7 @@
 
         <div>
 
-            <input type="text" name="services" placeholder="Separe os serviços por vírgula" value="{{ instructor.services }}"" />
+            <input type="text" name="services" placeholder="Separe os serviços por vírgula" value="{{ instructor.services }}" />
 
         </div>
 
