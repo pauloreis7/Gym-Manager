@@ -2,58 +2,39 @@
 
 {% block content %}
 
-    <div class="card">
+    <div class="card details-table">
 
-    <section class="avatar" style="background: url(https://source.unsplash.com/collection/8353395/400x600) no-repeat center center / cover">
+        <h3>Instrutors</h3>
 
-    </section>
+        <table width="100%">
+            <thead>
 
-    <section class="details">
-
-        <h3>Instrutor</h3>
-
-        <article class="item">
-        
-            <div>Instrutor</div>
-            <div>Clovis Pinto</div>
-        
-        </article>
-
-        <article class="item">
-        
-            <div>Idade</div>
-            <div>54</div>
-        
-        </article>
-
-        <article class="item">
-        
-            <div>Sexo</div>
-            <div>Masculino</div>
-        
-        </article>
-
-        <article class="item">
-        
-            <div>Acompanhamento</div>
-
-            <div>
+                <tr>
+                    <th>Instructor</th>
+                    <th>Service(s)</th>
+                    <th>Ação</th>
+                </tr>
             
-                <span>Musculção</span>
-                <span>Crossfit</span>
-            
-            </div>
-            
-        </article>
+            </thead>
 
-        <article class="item">
+            <tbody>
+            
+                {% for instructor in instructors %}
+
+                    <tr>
+                        
+                        <td><span style="background-image: url({{ instructor.avatar_url }})"></span> {{ instructor.name }}</td>
+                        <td>{{ instructor.services }}</td>
+                        <td><a href="/instructors/{{ instructor.id }}">VER</a></td>
+                        
+                    </tr>
+
+                {% endfor %}
+            
+            </tbody>
         
-            <div>Desde</div>
-            <div>05/07/1990</div>
-            
-        </article>
-
-
+        </table>
+        
     </section>
 
     </div>
