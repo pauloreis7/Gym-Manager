@@ -218,6 +218,17 @@ a.button:hover {
     padding: 25px;
 }
 
+.table_header {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.table_header a {
+    position: absolute;
+    left: 0;
+    top: -5px;
+}
+
 .details-table h3 {
     text-align: center;
     margin-bottom: 20px;
@@ -260,7 +271,7 @@ tbody tr td:first-child span {
     border: 2px solid white;
 }
 
-tbody tr td:last-child a {
+tbody tr td:last-child a, .table_header a {
     background-color: var(--primary-color);
     color: white;
     text-decoration: none;
@@ -271,7 +282,7 @@ tbody tr td:last-child a {
     padding: 8px 16px;
 }
 
-tbody tr td:last-child a:hover {
+tbody tr td:last-child a:hover, .table_header a:hover  {
     filter: brightness(90%);
     transition: 180ms;
 }
