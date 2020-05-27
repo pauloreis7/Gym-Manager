@@ -1,0 +1,12 @@
+<script>
+    const formDelete = document.querySelector("#form_delete")
+
+    formDelete.addEventListener("submit", function (event) {
+        const comfirm = confirm("Deseja mesmo apagar o membro?")
+
+        if (!comfirm){
+            event.preventDefault()
+        }
+    })
+        
+</script> 

@@ -150,7 +150,7 @@ header {
 
 /* FORM */
 
-input {
+input, select {
     width: 100%;
 
     color: #555;
@@ -175,6 +175,7 @@ button[type="submit"], a.button {
     margin-top: 32px;
 
     background-color: var(--primary-color);
+    outline: none;
     color: white;
     border-radius: 8px;
     font-size: 16px;
@@ -240,12 +241,17 @@ a.button:hover {
 
 .details-table thead tr th{
     text-align: left;
+
+    color: #777;
+    text-transform: uppercase;
+    font-size: 14px;
 }
 
 td, th {
     padding: 16px;
 
     border-bottom: 1px solid #d9d9d9;
+    color: #000000;
 }
 
 tbody tr:last-child td {
@@ -257,6 +263,8 @@ tbody tr td:first-child {
     grid-template-columns: 64px 1fr;
 
     align-items: center;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 tbody tr td:first-child span {

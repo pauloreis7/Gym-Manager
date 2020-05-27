@@ -20,8 +20,25 @@ module.exports = {
         const month = `0${date.getUTCMonth() + 1}`.slice(-2)
         const day = `0${date.getUTCDate()}`.slice(-2)
 
-        return `${year}-${month}-${day}`
-    }
+        return {
+            iso: `${year}-${month}-${day}`,
+            birthDate: `${day}/${month}`    
+        }
+            
+    },
 
-     
+    blood: function (typeOff) {
+        const types = {
+            A1: "A+",
+            A0: "A-",
+            B1: "B+",
+            B0: "B-",
+            AB1: "AB+",
+            AB0: "AB-",
+            O1: "O+",
+            O0: "O-",
+        }
+
+        return blood = types[typeOff]
+    }
 }
