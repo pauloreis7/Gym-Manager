@@ -5,8 +5,8 @@ module.exports = {
 
     all(callback) {
 
-        db.query(`SELECT * FROM instructors`, function (err, results) {
-            if (err) return res.send("Erro ao visualizar dados")
+        db.query(`SELECT * FROM instructors ORDER BY name ASC`, function (err, results) {
+            if (err) throw `Erro ao visualizar instrutores! ${ err }`
 
             callback(results.rows)
         })
@@ -36,9 +36,7 @@ module.exports = {
         ]
 
         db.query(query, values, function (err, results) {
-            if (err) return res.send("Erro ao inserir dados!")
-            
-            console.log(results)
+            if (err) throw `Erro ao cadastrar instrutor! ${ err }`
 
             callback(results.rows[0])
         })
@@ -46,10 +44,45 @@ module.exports = {
 
     find(id, callback) {
 
-        db.query(` SELECT * FROM instructors WHERE id = ${ id }`, function (err, results) {
-            if (err) return res.send("Erro ao encontrar dado!")
+        db.query(`SELECT * FROM instructors WHERE id = ${ id }`, function (err, results) {
+            if (err) throw `Erro ao encontrar instructor! ${ err }`
             
             callback(results.rows[0])
+        })
+    },
+
+    update( data, callback ) {
+        const query = `
+            UPDATE instructors SET
+            avatar_url = ($1),
+            name = ($2),
+            birth = ($3),
+            gender = ($4),
+            services = ($5)
+            WHERE id = ${ data.id }
+        ` 
+
+        const values = [
+            data.avatar_url,
+            data.name,
+            date(data.birth).iso,
+            data.gender,
+            data.services,
+        ]
+
+        db.query(query, values, function (err, results) {
+            if (err) throw `Erro ao atualizar instructor! ${ err }`
+            
+            callback()
+        })
+    },
+
+    delete(id, callback) {
+
+        db.query(`DELETE FROM instructors WHERE id = ${ id }`, function (err, results) {
+            if (err) throw `Erro ao deletar instructor! ${ err }`
+
+            callback()
         })
     }
 }

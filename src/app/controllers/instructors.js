@@ -31,7 +31,7 @@ module.exports = {
         }
 
         Instructor.create(req.body, function (instructor) {
-            return res.redirect(`/instructors/${ Instructor.id }`)
+            return res.redirect(`/instructors/${ instructor.id }`)
         })
     },
 
@@ -47,14 +47,18 @@ module.exports = {
 
             return res.render("instructors/show", { instructor })
         })
-
     },
 
     //editPage
     edit(req, res) {
 
-        return
+        Instructor.find(req.params.id, function (instructor) {
+            if (!instructor) return res.send("Instrutor não encontrado!")
 
+            instructor.birth = date(instructor.birth).iso
+            
+            return res.render("instructors/edit", { instructor })
+        })
     },
 
     //putUser
@@ -68,14 +72,18 @@ module.exports = {
             }
         }
 
-        let {avatar_url, name, birth, gender, services} = req.body
-
+        Instructor.update(req.body, function () {
+            
+            return res.redirect(`/instructors/${ req.body.id }`)
+        })
     },
 
     //deleteUser
     delete(req, res) {
 
-        return
+        Instructor.delete(req.body.id, function () {
 
+            return res.redirect("/instructors")
+        })
     },
 }
