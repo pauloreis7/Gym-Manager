@@ -8,8 +8,14 @@
 
             <a href="/instructors/create">Novo</a>
         
-            <h3>Instrutores</h3>
-        
+            <form action="/instructors" method="get">
+
+                <input name="filter" value="{{ search }}" placeholder="Pesquisar nome ou serviço">
+
+                <button type="submit">Pesquisar</button>
+
+            </form>
+            
         </article>
 
         
@@ -18,8 +24,9 @@
             <thead>
 
                 <tr>
-                    <th>Instructor</th>
-                    <th>Service(s)</th>
+                    <th>Instrutor</th>
+                    <th>Atendimento</th>
+                    <th>Alunos</th>
                     <th>Ação</th>
                 </tr>
             
@@ -33,6 +40,7 @@
                         
                         <td><span style="background-image: url({{ instructor.avatar_url }})"></span> {{ instructor.name }}</td>
                         <td>{{ instructor.services }}</td>
+                        <td>{{ instructor.total_students }}</td>
                         <td><a href="/instructors/{{ instructor.id }}">VER</a></td>
                         
                     </tr>

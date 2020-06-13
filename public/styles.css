@@ -156,7 +156,7 @@ input, select {
     color: #555;
     font-weight: bolder;
     font-size: 18px;
-    outline: none;
+    outline-color:#00000000;
 }
 
 input[type="radio"] {
@@ -220,14 +220,7 @@ a.button:hover {
 }
 
 .table_header {
-    position: relative;
     box-sizing: border-box;
-}
-
-.table_header a {
-    position: absolute;
-    left: 0;
-    top: -5px;
 }
 
 .details-table h3 {
@@ -297,4 +290,56 @@ tbody tr td:last-child a:hover, .table_header a:hover  {
 
 .details-table thead tr th:last-child, td:last-child {
     text-align: center;
+}
+
+/* FILTER */
+
+.details-table .table_header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+.details-table .table_header a {
+    margin: 0;
+
+    max-width: 80px;
+
+    font-size: 14px;
+}
+
+.details-table .table_header form {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    gap: 8px;
+
+    align-items: center;
+    text-align: center;
+}
+
+.details-table .table_header form input {
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 4px;
+    outline-color: var(--primary-color);
+    outline-width: 1px;
+
+    padding: 4px 8px;
+    box-sizing: border-box;
+}
+
+.details-table .table_header form input:hover {
+    border: 1px solid var(--primary-color);
+    opacity: .8;
+
+    transition: 250ms;
+}
+
+.details-table .table_header form button {
+    padding: 8px 16px;
+    margin: 0;
+
+    border-radius: 4px;
 }

@@ -6,10 +6,18 @@ module.exports = {
 
     //index
     index(req, res) {
+        
+        const { filter } = req.query
 
-        Instructor.all( function (instructors) {
-            return res.render("instructors/index", { instructors })
-        })
+        if (filter) {
+            Instructor.findFilter(filter, function (instructors) {
+                return res.render("instructors/index", { instructors, search:filter })
+            })
+        } else {
+            Instructor.all( function (instructors) {
+                return res.render("instructors/index", { instructors })
+            })
+        }
     },
 
     //createPage

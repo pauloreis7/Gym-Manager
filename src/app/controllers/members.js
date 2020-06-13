@@ -15,7 +15,11 @@ module.exports = {
     //createPage
     create(req, res) {
 
-        return res.render("members/create")
+        Member.instructorSelectOptions(function (options) {
+            
+            return res.render("members/create", { instructorOptions: options })
+        })
+
     },
 
     //createUser
@@ -40,7 +44,7 @@ module.exports = {
 
         Member.find(req.params.id, function (member) {
             if (!member) return res.send("Membro não encontrado!")
-
+            
             member.birth = date(member.birth).birthDate
             member.blood = blood(member.blood)
 
@@ -56,7 +60,9 @@ module.exports = {
 
             member.birth = date(member.birth).iso
 
-            return res.render("members/edit", { member })
+            Member.instructorSelectOptions(function (options) {
+                return res.render("members/edit", { member, instructorOptions: options })
+            })
         })
     },
 
