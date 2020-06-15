@@ -10,7 +10,7 @@
         
             <form action="/instructors" method="get">
 
-                <input name="filter" value="{{ search }}" placeholder="Pesquisar nome ou serviço">
+                <input name="filter" value="{{ filter }}" placeholder="Pesquisar nome ou serviço">
 
                 <button type="submit">Pesquisar</button>
 
@@ -50,8 +50,8 @@
             </tbody>
         
         </table>
-        
-    </section>
+
+        <div class="pagination" data-page={{ pagination.page }} data-total={{ pagination.total }} data-filter= {{ filter }}></div>
 
     </div>
 

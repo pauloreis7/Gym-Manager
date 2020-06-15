@@ -139,7 +139,7 @@
         
             {% for instructor in instructorOptions %}
 
-                <option value="{{ instructor.id }}" {% if instructor_id ==  instructor.id   %} selected {% endif %} >
+                <option value="{{ instructor.id }}" {% if member.instructor_id ==  instructor.id   %} selected {% endif %} >
                     {{ instructor.name }}
                 </option>
 
