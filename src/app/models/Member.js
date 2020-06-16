@@ -1,16 +1,8 @@
 const { date, blood } = require("../../lib/utils")
 const db = require('../../config/db')
+const { paginate } = require("./Instructor")
 
 module.exports = {
-
-    all(callback) {
-
-        db.query(`SELECT * FROM members ORDER BY name ASC`, function (err, results) {
-            if (err) throw `Erro ao visualizar membros! ${ err }`
-
-            callback(results.rows)
-        })
-    },
 
     create(data, callback) {
 
@@ -111,5 +103,36 @@ module.exports = {
             
             callback(results.rows)
         })
+    },
+
+    pagination(params) {
+
+        let { filter, limit, offset, callback } = params
+
+        let query = "",
+            filterQuery = "",
+            totalQuery = `(SELECT count(*) FROM members) AS total`
+
+            if (filter) {
+
+                filterQuery = `
+                WHERE members.name ILIKE '%${ filter }%'
+                OR members.email ILIKE '%${ filter }%'
+                `
+
+                totalQuery = `(SELECT count(*) FROM members
+                ${ filterQuery }) AS total`
+            }
+
+            query = `SELECT *, ${ totalQuery }
+            FROM members
+            ${ filterQuery }
+            ORDER BY id ASC
+            LIMIT $1 OFFSET $2`
+
+            db.query(query, [ limit, offset ], function (err, results) {
+                if (err) throw `Erro ao vizualizar membros! ${ err }`
+                callback(results.rows)
+            })
     }
 }

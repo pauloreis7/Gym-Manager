@@ -3,21 +3,6 @@ const db = require('../../config/db')
 
 module.exports = {
 
-    all(callback) {
-
-        db.query(`SELECT instructors.*, count(members) AS total_students
-        FROM instructors 
-        LEFT JOIN members ON (members.instructor_id = instructors.id)
-        GROUP BY instructors.id
-        ORDER BY total_students DESC
-        `
-        , function (err, results) {
-            if (err) throw `Erro ao visualizar instrutores! ${ err }`
-
-            callback(results.rows)
-        })
-    },
-
     create(data, callback) {
 
         const query = `
@@ -123,7 +108,7 @@ module.exports = {
             `
 
             totalQuery = ` (SELECT count(*) FROM instructors
-                            ${ filterQuery }
+            ${ filterQuery }
             ) AS total`
         }
 

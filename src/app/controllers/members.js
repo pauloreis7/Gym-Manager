@@ -7,9 +7,30 @@ module.exports = {
     //index
     index(req, res) {
 
-        Member.all(function ( members ) {
-            return res.render("members/index", { members })
-        })
+        let { filter, page, limit } = req.query
+
+            page = page || 1,
+            limit = limit || 3
+        let offset = limit * (page - 1)
+
+        // console.log(offset)
+        const params = {
+            filter,
+            page,
+            limit,
+            offset,
+            callback (members) {
+
+                 const pagination = {
+                     total: Math.ceil(members[0].total / limit),
+                    page
+                 }
+
+                return res.render("members/index", { members, pagination, filter })
+            }
+        }
+
+        Member.pagination(params)
     },
 
     //createPage

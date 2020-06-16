@@ -8,8 +8,14 @@
 
             <a href="/members/create">Novo</a>
         
-            <h3>Membros</h3>
-        
+            <form action="/members" method="get">
+
+                <input name="filter" value="{{ filter }}" placeholder="Pesquisar nome ou e-mail">
+
+                <button type="submit">Pesquisar</button>
+
+            </form>
+            
         </article>
 
         <table width="100%">
@@ -45,7 +51,7 @@
         
         </table>
         
-    </section>
+        <div class="pagination" data-page={{ pagination.page }} data-total={{ pagination.total }} data-filter= {{ filter }}></div>
 
     </div>
 

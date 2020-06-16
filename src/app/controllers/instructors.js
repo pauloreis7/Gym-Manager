@@ -30,16 +30,6 @@ module.exports = {
         }
         
         Instructor.paginate(params)
-
-        // if (filter) {
-        //     Instructor.findFilter(filter, function (instructors) {
-        //         return res.render("instructors/index", { instructors, search:filter })
-        //     })
-        // } else {
-        //     Instructor.all( function (instructors) {
-        //         return res.render("instructors/index", { instructors })
-        //     })
-        // }
     },
 
     //createPage
